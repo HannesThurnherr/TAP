@@ -1,0 +1,30 @@
+# This workspace also contains footage and earlier prototypes. Only TAP belongs here.
+/*
+!/app/
+!/README.md
+!/.gitignore
+
+# Local settings, credentials and generated output.
+**/.DS_Store
+**/__pycache__/
+**/*.pyc
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/*.log
+**/node_modules/
+
+# Historical research and exercise reviews are retained locally.
+/app/docs/research/
+/app/docs/audits/
+/app/docs/DESIGN.md
+/app/docs/UX.md
+/app/docs/USABILITY_REVIEW.md
+/app/docs/PLAYBACK_EXERCISE.md
+/app/docs/SWISS_SYMBOLOGY_ASSESSMENT.md
+
+# Superseded branding assets; current TAP assets and bundled fonts are retained.
+/app/desktop/assets/azim-icon.png
+/app/desktop/assets/ICON_PROMPT.txt
+/app/web/public/azim-icon.png

@@ -1,0 +1,33 @@
+{
+  "name": "manoever-web",
+  "private": true,
+  "version": "0.0.1",
+  "packageManager": "pnpm@12.3.4",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5180 --strictPort",
+    "build": "node --experimental-strip-types scripts/symbol-gallery.mjs && tsc --noEmit && vite build",
+    "preview": "vite preview --port 5181",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "geotiff": "^3.0.5",
+    "html-to-image": "^1.11.13",
+    "maplibre-gl": "^5.6.0",
+    "mediabunny": "^1.55.7",
+    "proj4": "^2.15.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.180.0",
+    "zustand": "^5.0.6"
+  },
+  "devDependencies": {
+    "@types/proj4": "^2.5.6",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.3.0"
+  }
+}

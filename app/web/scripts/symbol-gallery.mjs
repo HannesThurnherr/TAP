@@ -1,0 +1,13 @@
+import fs from 'node:fs'
+import {UNIT_SYMBOLS,POINT_SYMBOLS,TACTICAL_LINES,TACTICAL_AREAS,AFFILIATIONS} from '../src/symbology/catalog.ts'
+import {unitDrawing,pointDrawing,symbolSvg} from '../src/symbology/symbol.ts'
+import {swissLegend} from '../src/symbology/legend.ts'
+const cards=[]
+for(const [id,v] of Object.entries(UNIT_SYMBOLS))for(const affiliation of Object.keys(AFFILIATIONS))cards.push({label:v.name+' · '+AFFILIATIONS[affiliation],page:v.page,drawing:unitDrawing({code:id,affiliation,echelon:'company'},undefined,affiliation==='unknown'?'planned':'active')})
+for(const [id,v] of Object.entries(POINT_SYMBOLS))cards.push({label:v.name,page:v.page,drawing:pointDrawing(id,'blue')})
+for(const [id,v] of Object.entries(TACTICAL_LINES)){const e={id:'x',kind:'line',tactical:id,points:[[0,0],[100,100]]};cards.push({label:v.name,page:v.page,drawing:swissLegend({duration:10,elements:[e]})[0].drawing})}
+for(const [id,v] of Object.entries(TACTICAL_AREAS)){const e={id:'x',kind:'zone',tactical:id,points:[[0,0],[100,0],[50,100]]};cards.push({label:v.name,page:v.page,drawing:swissLegend({duration:10,elements:[e]})[0].drawing})}
+cards.push({label:'Stab · Einsatzverband · verstärkt',page:49,drawing:unitDrawing({code:'infantry',echelon:'battalion',hq:true,taskForce:true,strength:'reinforced'},'blue')})
+const html=`<!doctype html><html lang="de"><meta charset="utf-8"><title>TAP · Schweizer Symbolreferenz 0.1.10</title><style>body{font:15px system-ui;background:#141c23;color:#e9eef3;margin:32px}h1{margin-bottom:8px}p{color:#bbc9d4;max-width:1000px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.card{background:#26333f;border:1px solid #435666;border-radius:8px;padding:14px}.preview{display:flex;justify-content:center;background:#eef3f5;margin:8px 0}.preview svg{width:140px;height:115px;max-width:100%}small{color:#9eb9cc}input{padding:10px;width:320px;margin:16px 0}</style><h1>Schweizer Symbole · TAP 0.1.10</h1><p>APM 2012 · implementierte Auswahl. Symbole mit Bezeichnung und Quellenangabe; keine Zertifizierung. Dreidimensionale Beschriftungen bleiben zur Kamera lesbar. Filmsymbole und Animationseffekte sind weiterhin verfügbar.</p><input aria-label="Symbole filtern" placeholder="Symbole filtern …" oninput="document.querySelectorAll('.card').forEach(c=>c.hidden=!c.textContent.toLowerCase().includes(this.value.toLowerCase()))"><main>${cards.map(c=>`<article class="card"><b>${c.label}</b><div class="preview">${symbolSvg(c.drawing)}</div><small>Reglement 52.002.04 · gedruckte Seite ${c.page}</small></article>`).join('')}</main></html>`
+fs.writeFileSync(new URL('../public/symbol-reference.html',import.meta.url),html)
+console.log('Reference gallery:',cards.length,'cards')

@@ -1,0 +1,7 @@
+.tools/
+build/
+dist/
+server/web/
+server/rsrc_windows_*.syso
+__pycache__/
+build-log.txt

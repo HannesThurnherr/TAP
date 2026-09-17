@@ -1,0 +1,36 @@
+{
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": "assets/tap-icon.png"
+    }
+  },
+  "RT_MANIFEST": {
+    "#1": {
+      "0409": {
+        "description": "TAP terrain animation editor",
+        "minimum-os": "win10",
+        "execution-level": "as invoker",
+        "dpi-awareness": "system"
+      }
+    }
+  },
+  "RT_VERSION": {
+    "#1": {
+      "0000": {
+        "fixed": {
+          "file_version": "0.1.10.0",
+          "product_version": "0.1.10.0"
+        },
+        "info": {
+          "0409": {
+            "ProductName": "TAP",
+            "FileDescription": "TAP browser launcher",
+            "FileVersion": "0.1.10",
+            "ProductVersion": "0.1.10",
+            "OriginalFilename": "TAP.exe"
+          }
+        }
+      }
+    }
+  }
+}
